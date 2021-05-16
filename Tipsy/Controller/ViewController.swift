@@ -9,16 +9,24 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     var tipPercentage: Int = 0
     var splitNumber: Int = 0
     var finalAmountPerPerson: Float = 0.0
     let calculationModel = CalculationModel()
     
     @IBOutlet weak var billInputField: UITextField!
+    @IBOutlet weak var zeroPercentageTip: UIButton!
+    @IBOutlet weak var tenPercentageTip: UIButton!
+    @IBOutlet weak var twentyPercentageTip: UIButton!
     @IBOutlet weak var splitInput: UILabel!
     
     @IBAction func tipSelected(_ sender: UIButton) {
+        billInputField.endEditing(true)
+        zeroPercentageTip.isSelected = false
+        tenPercentageTip.isSelected = false
+        twentyPercentageTip.isSelected = false
+        sender.isSelected = true
         tipPercentage = calculationModel.tipPercentage(percentage: sender.tag)
     }
     
@@ -28,11 +36,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func calculate(_ sender: UIButton) {
-        
-        let billInput = Float(billInputField.text!)
-        let tipApplied = calculationModel.addTipPercentage(billAmount:billInput!, tip:tipPercentage)
-        finalAmountPerPerson = calculationModel.divideToSplit(tipAdded: tipApplied, numberOfPeople: splitNumber)
-        
+        if billInputField.text != "" {
+            let billInput = Float(billInputField.text!)
+            let tipApplied = calculationModel.addTipPercentage(billAmount:billInput!, tip:tipPercentage)
+            finalAmountPerPerson = calculationModel.divideToSplit(tipAdded: tipApplied, numberOfPeople: splitNumber)}
         performSegue(withIdentifier: "ResultView", sender: self)
     }
     
@@ -40,15 +47,9 @@ class ViewController: UIViewController {
         if segue.identifier == "ResultView"{
             if let destinationVC = segue.destination as? ResultViewController {
                 destinationVC.finalAmountPerHead = String(format: "%.1f",finalAmountPerPerson)
+                destinationVC.tipPercentage = tipPercentage
+                destinationVC.splitBetween = splitNumber
             }
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
-    
-
 }

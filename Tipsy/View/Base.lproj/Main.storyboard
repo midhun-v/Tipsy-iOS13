@@ -201,6 +201,9 @@
                     <connections>
                         <outlet property="billInputField" destination="wcN-ka-Q4F" id="UyR-Uz-7h0"/>
                         <outlet property="splitInput" destination="bSy-Yc-886" id="lrF-11-SKB"/>
+                        <outlet property="tenPercentageTip" destination="7y6-Kf-yF0" id="qRu-r8-5fv"/>
+                        <outlet property="twentyPercentageTip" destination="UtR-dU-EKt" id="kjO-NS-Shu"/>
+                        <outlet property="zeroPercentageTip" destination="XzR-0E-Xf7" id="yRj-ds-klK"/>
                         <segue destination="Dnf-m2-FPm" kind="presentation" identifier="ResultView" id="tob-tD-qFj"/>
                     </connections>
                 </viewController>
@@ -263,6 +266,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10f"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="recalculate:" destination="Dnf-m2-FPm" eventType="touchUpInside" id="Nud-p0-P02"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Split between 2 people, with 10% tip." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGt-bn-sCv">
                                 <rect key="frame" x="50" y="305" width="314" height="117"/>

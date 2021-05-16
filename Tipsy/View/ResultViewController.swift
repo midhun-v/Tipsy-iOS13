@@ -11,25 +11,18 @@ import UIKit
 class ResultViewController: UIViewController {
 
     var finalAmountPerHead: String = ""
+    var tipPercentage = 0
+    var splitBetween = 0
     
     @IBOutlet weak var finalResultAmount: UILabel!
-    
     @IBOutlet weak var resultComments: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         finalResultAmount.text = finalAmountPerHead
+        resultComments.text = "Split between \(splitBetween) people with \(tipPercentage)% tip."
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func recalculate(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
-    */
-
 }
